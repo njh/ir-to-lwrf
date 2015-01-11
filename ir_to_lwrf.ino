@@ -1,9 +1,79 @@
-void setup() {
-  // put your setup code here, to run once:
+/*
+ * InfraRed to LightwaveRF relay
+ * Receives remote control commands via InfraRed
+ * and then transmits commands to LightWave RF
+ * 
+ * Copyright 2015 Nicholas Humfrey
+ */
 
+#include <LightwaveRF.h>
+#include <IRremote.h>
+
+
+int LW_RX_PIN   = 2;
+int LW_TX_PIN   = 3;
+int IR_RECV_PIN = 4;
+int LED_PIN     = 13;
+
+//LightwaveRF lwrf(LW_TX_PIN, LW_RX_PIN);
+IRrecv irrecv(IR_RECV_PIN);
+decode_results results;
+
+static byte nibbles[] = {0xF6,0xEE,0xED,0xEB,0xDE,0xDD,0xDB,0xBE,
+                         0xBD,0xBB,0xB7,0x7E,0x7D,0x7B,0x77,0x6F};
+
+void setup()
+{
+    Serial.begin(9600);
+    lw_setup();
+    irrecv.enableIRIn();
+    pinMode(LED_PIN, OUTPUT);
+    digitalWrite(LED_PIN, LOW);
+    Serial.println("Ready.");
 }
 
 void loop() {
-  // put your main code here, to run repeatedly: 
-  
+    if (irrecv.decode(&results)) {
+        if (results.decode_type == JVC) {
+            digitalWrite(LED_PIN, HIGH);
+            Serial.print("Received: 0x");
+            Serial.println(results.value, HEX);
+            switch(results.value) {
+                case 0xC2D0:
+                    lw_send((byte*)"\x7D\xF6\x6F\xF6\x6F\xEB\xEE\xBD\xBB\xF6");
+                break;
+                case 0xC038:
+                    lw_send((byte*)"\xBD\xED\x6F\xED\x6F\xEB\xEE\xBD\xBB\xF6");
+                break;
+                case 0xC084:
+                    lw_send((byte*)"\xF6\xF6\xF6\xEE\x6F\xEB\xEE\xBD\xBB\xF6");
+                break;
+                case 0xC044:
+                    lw_send((byte*)"\xF6\xF6\xF6\xF6\x6F\xEB\xEE\xBD\xBB\xF6");
+                break;
+                case 0xC0C4:
+                    lw_send((byte*)"\xF6\xF6\xEE\xEE\x6F\xEB\xEE\xBD\xBB\xF6");
+                break;
+                case 0xC024:
+                    lw_send((byte*)"\xF6\xF6\xEE\xF6\x6F\xEB\xEE\xBD\xBB\xF6");
+                break;
+                case 0xC0A4:
+                    lw_send((byte*)"\xF6\xF6\xED\xEE\x6F\xEB\xEE\xBD\xBB\xF6");
+                break;
+                case 0xC064:
+                    lw_send((byte*)"\xF6\xF6\xED\xF6\x6F\xEB\xEE\xBD\xBB\xF6");
+                break;
+                case 0xC0E4:
+                    lw_send((byte*)"\xF6\xF6\xEB\xEE\x6F\xEB\xEE\xBD\xBB\xF6");
+                break;
+                case 0xC014:
+                    lw_send((byte*)"\xF6\xF6\xEB\xF6\x6F\xEB\xEE\xBD\xBB\xF6");
+                break;
+            }
+        }
+        irrecv.resume(); // Receive the next value
+    }
+    delay(100);
+    digitalWrite(LED_PIN, LOW);
 }
+
