@@ -1,4 +1,4 @@
-InfraRed to LightWave RF relay
+Infrared to LightWave RF relay
 ==============================
 
 
@@ -16,3 +16,32 @@ InfraRed to LightWave RF relay
 | 8          | 0xC014   | Light 4 Off         | 00 30 F3 18 90    |
 | 9          | 0xC094   |                     |                   |
 | 0          | 0xC004   |                     |                   |
+
+
+
+Atmega 328 Pinout
+-----------------
+
+| Arduino Pin | AVR Pin | Function        |
+|-------------|---------|-----------------|
+| D0          | D0      | Serial Receive  |
+| D1          | D1      | Serial Transmit |
+| D2          | D2      |                 |
+| D3          | D3      |                 |
+| D4          | D4      |                 |
+| D5          | D5      | Red LED         |
+| D6          | D6      |                 |
+| D7          | D7      |                 |
+| D8          | B0      | IR Receive      |
+| D9          | B1      | RF Transmit     |
+| D10         | B2      |                 |
+| D11         | B3      |                 |
+| D12         | B4      |                 |
+| D13         | B5      |                 |
+| A0          | C0      |                 |
+| A1          | C1      |                 |
+| A2          | C2      |                 |
+| A3          | C3      |                 |
+| A4          | C4      |                 |
+| A5          | C5      |                 |
+
