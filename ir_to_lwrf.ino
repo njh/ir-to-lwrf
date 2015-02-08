@@ -3,6 +3,10 @@
  * Receives remote control commands via InfraRed
  * and then transmits commands to LightWave RF
  * 
+ * Dependencies:
+ *  IRRemote:    https://github.com/shirriff/Arduino-IRremote
+ *  LightwaveRF: 
+ *
  * Copyright 2015 Nicholas Humfrey
  */
 
@@ -10,10 +14,9 @@
 #include <IRremote.h>
 
 
-int LW_RX_PIN   = 2;
-int LW_TX_PIN   = 3;
-int IR_RECV_PIN = 4;
-int LED_PIN     = 13;
+int LW_TX_PIN   = 9;
+int IR_RECV_PIN = 8;
+int LED_PIN     = 5;
 
 //LightwaveRF lwrf(LW_TX_PIN, LW_RX_PIN);
 IRrecv irrecv(IR_RECV_PIN);
