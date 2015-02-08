@@ -3,6 +3,10 @@
  * Receives remote control commands via InfraRed
  * and then transmits commands to LightWave RF
  * 
+ * Dependencies:
+ *  IRRemote:    https://github.com/shirriff/Arduino-IRremote
+ *  LightwaveRF: 
+ *
  * Copyright 2015 Nicholas Humfrey
  */
 
