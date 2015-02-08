@@ -2,6 +2,23 @@ Infrared to LightWave RF relay
 ==============================
 
 
+
+Stripboard Design
+-----------------
+
+![Stripboard design made using Fritzing](https://raw.githubusercontent.com/njh/ir_to_lwrf/master/images/fritzing-stripboard.png)
+
+
+Schematic
+---------
+
+![Schematic made using Fritzing](https://raw.githubusercontent.com/njh/ir_to_lwrf/master/images/fritzing-schematic.png)
+
+
+
+Button mapping
+--------------
+
 | JVC Button | JVC Code | LightWave RF Button | LightWave RF Code |
 |------------|----------|---------------------|-------------------|
 | Power      | 0xC2D0   | All Off             | C0 F0 F3 18 90    |
@@ -44,4 +61,6 @@ Atmega 328 Pinout
 | A3          | C3      |                 |
 | A4          | C4      |                 |
 | A5          | C5      |                 |
+
+
 
