@@ -5,7 +5,7 @@
  * 
  * Dependencies:
  *  IRRemote:    https://github.com/shirriff/Arduino-IRremote
- *  LightwaveRF: 
+ *  LightwaveRF: https://github.com/lawrie/LightwaveRF/
  *
  * Copyright 2015 Nicholas Humfrey
  */
@@ -18,17 +18,13 @@ int LW_TX_PIN   = 9;
 int IR_RECV_PIN = 8;
 int LED_PIN     = 5;
 
-//LightwaveRF lwrf(LW_TX_PIN, LW_RX_PIN);
 IRrecv irrecv(IR_RECV_PIN);
 decode_results results;
-
-static byte nibbles[] = {0xF6,0xEE,0xED,0xEB,0xDE,0xDD,0xDB,0xBE,
-                         0xBD,0xBB,0xB7,0x7E,0x7D,0x7B,0x77,0x6F};
 
 void setup()
 {
     Serial.begin(9600);
-    lw_setup();
+    lw_tx_setup(LW_TX_PIN);
     irrecv.enableIRIn();
     pinMode(LED_PIN, OUTPUT);
     digitalWrite(LED_PIN, LOW);
