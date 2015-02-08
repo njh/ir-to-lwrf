@@ -26,8 +26,13 @@ void setup()
     Serial.begin(9600);
     lw_tx_setup(LW_TX_PIN);
     irrecv.enableIRIn();
+
+    // Turn on the LED for 1/4 a second
     pinMode(LED_PIN, OUTPUT);
+    digitalWrite(LED_PIN, HIGH);
+    delay(250);
     digitalWrite(LED_PIN, LOW);
+
     Serial.println("Ready.");
 }
 
